@@ -1,5 +1,6 @@
 const express = require('express');
 const multer = require('multer');
+const { ErrorHandler, handleError, hadleError } = require('./helpers/errors');
 const app = express();
 const port = process.env.PORT || 3000;
 const path = require('path');
@@ -35,7 +36,7 @@ function validImage(file, cb) {
         return cb(null, true);
     }
     else {
-        return cb('Error: only image files are allowed');
+        return cb(new ErrorHandler(404, "The file selected in the image field is not an image. Please try again with an image file."));
     }
 }
 
@@ -49,6 +50,10 @@ app.post('/api/resizeImage', upload.single('image'), (req, res) => {
     };
     res.send(imgInfo);
 });
+
+app.use((err, req, res, next) => {
+    hadleError(err, res);
+})
 
 app.listen(port, () => {
     console.log(`Started listening at port ${port}...`);

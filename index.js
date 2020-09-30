@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-const { ErrorHandler, handleError, hadleError } = require('./helpers/errors');
+const { ErrorHandler, handleError } = require('./helpers/errors');
 const app = express();
 const port = process.env.PORT || 3000;
 const path = require('path');
@@ -55,7 +55,7 @@ app.post('/api/resizeImage', upload.single('image'), (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-    hadleError(err, res);
+    handleError(err, res);
 })
 
 app.listen(port, () => {

@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-const { ErrorHandler, handleError } = require('./helpers/errors');
+const { ErrorHandler, handle_error } = require('./helpers/errors');
 const app = express();
 const port = process.env.PORT || 3000;
 const path = require('path');
@@ -18,14 +18,14 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage,
     fileFilter: function(req, file, cb) {
-        validImage(file, cb);
+        is_valid_image(file, cb);
     }
 });
 
 app.use(express.json());
 app.use(express.static('public'));
 
-function validImage(file, cb) {
+function is_valid_image(file, cb) {
     const fileExt = path.extname(file.originalname).toLowerCase();
     const fileMime = file.mimetype;
 
@@ -55,7 +55,7 @@ app.post('/api/resizeImage', upload.single('image'), (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-    handleError(err, res);
+    handle_error(err, res);
 })
 
 app.listen(port, () => {

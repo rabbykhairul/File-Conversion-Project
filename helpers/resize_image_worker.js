@@ -11,7 +11,7 @@ const user_req_details = (req) => {
   return {
     outputWidth: Number(req.body.width),
     outputHeight: Number(req.body.height),
-    outputFormats: req.body.formats,
+    outputFormats: req.body.formats || "jpeg",
   };
 };
 

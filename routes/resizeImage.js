@@ -4,7 +4,7 @@ const multer = require("multer");
 const path = require("path");
 const { ErrorHandler } = require("../helpers/errors");
 const is_valid_image = require("../helpers/is_valid_image");
-const uploaded_file_details = require("../helpers/uploaded_file_details");
+const processed_request = require("../helpers/resize_image_worker");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -38,7 +38,7 @@ router.post("/", upload.single("image"), (req, res) => {
   //   path: req.file.path,
   // };
 
-  res.send(uploaded_file_details(req));
+  res.send(processed_request(req));
 });
 
 module.exports = router;

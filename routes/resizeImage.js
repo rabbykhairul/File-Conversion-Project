@@ -4,6 +4,7 @@ const multer = require("multer");
 const path = require("path");
 const { ErrorHandler } = require("../helpers/errors");
 const is_valid_image = require("../helpers/is_valid_image");
+const uploaded_file_details = require("../helpers/uploaded_file_details");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -23,20 +24,21 @@ const upload = multer({
 });
 
 router.post("/", upload.single("image"), (req, res) => {
-  if (req.file == undefined) {
-    throw new ErrorHandler(
-      404,
-      "You have not selected any image file. Please select an image from your device to sumbmit and try again."
-    );
-  }
-  const imgInfo = {
-    originalFileName: req.file.originalname,
-    ecoding: req.file.encoding,
-    mimetype: req.file.mimetype,
-    size: req.file.size + " bytes",
-    path: req.file.path,
-  };
-  res.send(imgInfo);
+  // if (req.file == undefined) {
+  //   throw new ErrorHandler(
+  //     404,
+  //     "You have not selected any image file. Please select an image from your device to sumbmit and try again."
+  //   );
+  // }
+  // const imgInfo = {
+  //   originalFileName: req.file.originalname,
+  //   ecoding: req.file.encoding,
+  //   mimetype: req.file.mimetype,
+  //   size: req.file.size + " bytes",
+  //   path: req.file.path,
+  // };
+
+  res.send(uploaded_file_details(req));
 });
 
 module.exports = router;

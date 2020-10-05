@@ -1,4 +1,4 @@
-const uploaded_file_url = require("./uploaded_file_url");
+const uploaded_file_url = require("./get_file_url");
 const { ErrorHandler } = require("./errors");
 
 const uploaded_file_details = (req) => {

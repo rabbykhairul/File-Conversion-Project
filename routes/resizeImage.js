@@ -24,20 +24,6 @@ const upload = multer({
 });
 
 router.post("/", upload.single("image"), (req, res) => {
-  // if (req.file == undefined) {
-  //   throw new ErrorHandler(
-  //     404,
-  //     "You have not selected any image file. Please select an image from your device to sumbmit and try again."
-  //   );
-  // }
-  // const imgInfo = {
-  //   originalFileName: req.file.originalname,
-  //   ecoding: req.file.encoding,
-  //   mimetype: req.file.mimetype,
-  //   size: req.file.size + " bytes",
-  //   path: req.file.path,
-  // };
-
   res.send(processed_request(req));
 });
 

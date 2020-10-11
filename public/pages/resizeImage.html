@@ -20,7 +20,6 @@
       <input type="checkbox" name="formats" value="png" />png
       <input type="checkbox" name="formats" value="webp" />webp
       <input type="checkbox" name="formats" value="tiff" />tiff
-      <input type="checkbox" name="formats" value="tif" />tif
       <br />
       <input type="submit" value="Resize Image" />
     </form>
@@ -35,8 +34,14 @@
 
         const XHR = new XMLHttpRequest();
 
-        XHR.onreadystatechange = function () {
-          console.log(this.response);
+        XHR.onload = function () {
+          const serverResponse = JSON.parse(XHR.response);
+          console.log(serverResponse);
+        };
+
+        XHR.onerror = function () {
+          const serverResponse = JSON.parse(XHR.response);
+          console.log(serverResponse);
         };
 
         XHR.open("POST", "http://localhost:3000/api/resizeImage");

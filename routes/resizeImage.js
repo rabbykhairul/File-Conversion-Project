@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const path = require("path");
+const cors = require("cors");
 const { ErrorHandler } = require("../helpers/errors");
 const is_valid_image = require("../helpers/is_valid_image");
 const processed_request = require("../helpers/resize_image_worker");
@@ -22,6 +23,8 @@ const upload = multer({
     is_valid_image(file, cb);
   },
 });
+
+router.use(cors());
 
 router.post("/", upload.single("image"), (req, res) => {
   res.send(processed_request(req));

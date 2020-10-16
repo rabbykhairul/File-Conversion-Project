@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <form enctype="multipart/form-data" method="POST" name="resize-image-form">
+      1. Select an image file:
+      <input type="file" name="image" />
+      <br />
+      2. <input type="number" name="width" placeholder="width" /> X
+      <input type="number" name="height" placeholder="height" />
+      <br />
+      3. Output formats:
+      <input type="checkbox" name="formats" value="jpeg" />jpeg
+      <input type="checkbox" name="formats" value="jpg" />jpg
+      <input type="checkbox" name="formats" value="png" />png
+      <input type="checkbox" name="formats" value="webp" />webp
+      <input type="checkbox" name="formats" value="tiff" />tiff
+      <br />
+      <input type="submit" value="Resize Image" />
+    </form>
+
+    <div class="response-log"></div>
+
+    <script src="../js/form_handler_resize_image.js"></script>
+  </body>
+</html>

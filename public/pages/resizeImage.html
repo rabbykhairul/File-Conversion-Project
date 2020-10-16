@@ -26,27 +26,6 @@
 
     <div class="response-log"></div>
 
-    <script>
-      const form = document.forms.namedItem("resize-image-form");
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const userInputs = new FormData(form);
-
-        const XHR = new XMLHttpRequest();
-
-        XHR.onload = function () {
-          const serverResponse = JSON.parse(XHR.response);
-          console.log(serverResponse);
-        };
-
-        XHR.onerror = function () {
-          const serverResponse = JSON.parse(XHR.response);
-          console.log(serverResponse);
-        };
-
-        XHR.open("POST", "http://localhost:3000/api/resizeImage");
-        XHR.send(userInputs);
-      });
-    </script>
+    <script src="../js/form_handler_resize_image.js"></script>
   </body>
 </html>

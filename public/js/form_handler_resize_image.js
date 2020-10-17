@@ -18,15 +18,23 @@ const requestedFormats = document.querySelector(".requested-formats");
 const errorInfo = document.querySelector(".error-info");
 const errorMessage = document.querySelector(".error-message");
 
-function show_upload_status(e) {
+function hide_form() {
   form.style.display = "none";
+}
+
+function show_upload_status(e) {
+  hide_form();
   uploadInfo.style.display = "block";
   let percentage = Math.floor((e.loaded / e.total) * 100);
   uploadPercentage.innerHTML = `${percentage}%`;
 }
 
-function show_processing_status() {
+function hide_upload_info() {
   uploadInfo.style.display = "none";
+}
+
+function show_processing_status() {
+  hide_upload_info();
   processingInfo.style.display = "block";
 }
 
@@ -84,14 +92,18 @@ function write_resized_image_infos(response) {
   write_resized_image_urls(response);
 }
 
-function show_resized_image_infos(response) {
+function hide_processing_info() {
   processingInfo.style.display = "none";
+}
+
+function show_resized_image_infos(response) {
+  hide_processing_info();
   write_resized_image_infos(response);
   resizedImageInfo.style.display = "block";
 }
 
 function show_server_error_details(response) {
-  processingInfo.style.display = "none";
+  hide_processing_info();
   errorMessage.innerHTML = response.message;
   errorInfo.style.display = "block";
 }

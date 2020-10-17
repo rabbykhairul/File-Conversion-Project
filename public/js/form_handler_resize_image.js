@@ -15,6 +15,9 @@ const requestedWidth = document.querySelector(".requested-width");
 const requestedHeight = document.querySelector(".requested-height");
 const requestedFormats = document.querySelector(".requested-formats");
 
+const errorInfo = document.querySelector(".error-info");
+const errorMessage = document.querySelector(".error-message");
+
 function show_upload_status(e) {
   form.style.display = "none";
   uploadInfo.style.display = "block";
@@ -80,7 +83,9 @@ function show_resized_image_infos(response) {
 }
 
 function show_server_error_details(response) {
-  console.log(response.message);
+  processingInfo.style.display = "none";
+  errorMessage.innerHTML = response.message;
+  errorInfo.style.display = "block";
 }
 
 function handle_server_response() {

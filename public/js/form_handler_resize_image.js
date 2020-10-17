@@ -3,14 +3,14 @@ const uploadInfo = document.querySelector(".upload-info");
 const uploadPercentage = document.querySelector(".upload-percentage");
 const processingInfo = document.querySelector(".processing-info");
 
-function showUploadStatus(e) {
+function show_upload_status(e) {
   form.style.display = "none";
   uploadInfo.style.display = "block";
   let percentage = Math.floor((e.loaded / e.total) * 100);
   uploadPercentage.innerHTML = `${percentage}%`;
 }
 
-function showProcessingStatus() {
+function show_processing_status() {
   uploadInfo.style.display = "none";
   processingInfo.style.display = "block";
 }
@@ -26,8 +26,8 @@ form.addEventListener("submit", (e) => {
     console.log(serverResponse);
   };
 
-  XHR.upload.onprogress = showUploadStatus;
-  XHR.upload.onload = showProcessingStatus;
+  XHR.upload.onprogress = show_upload_status;
+  XHR.upload.onload = show_processing_status;
 
   XHR.open("POST", "http://localhost:3000/api/resizeImage");
   XHR.send(userInputs);

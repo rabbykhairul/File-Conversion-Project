@@ -26,11 +26,6 @@ form.addEventListener("submit", (e) => {
     console.log(serverResponse);
   };
 
-  XHR.onerror = function () {
-    const serverResponse = JSON.parse(XHR.response);
-    console.log(serverResponse);
-  };
-
   XHR.upload.onprogress = showUploadStatus;
   XHR.upload.onload = showProcessingStatus;
 

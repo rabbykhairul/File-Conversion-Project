@@ -65,14 +65,22 @@ function write_resized_image_urls(response) {
   });
 }
 
-function write_resized_image_infos(response) {
+function write_original_file_infos(response) {
   originalImageName.innerHTML = response.originalFileName;
   originalImageType.innerHTML = response.mimetype;
   originalImageURL.innerHTML = response.originalFileUrl;
   originalImageURL.href = response.originalFileUrl;
+}
+
+function write_user_req_details(response) {
   requestedWidth.innerHTML = response.outputWidth;
   requestedHeight.innerHTML = response.outputHeight;
   requestedFormats.innerHTML = get_formats(response.outputFormats);
+}
+
+function write_resized_image_infos(response) {
+  write_original_file_infos(response);
+  write_user_req_details(response);
   write_resized_image_urls(response);
 }
 

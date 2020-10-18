@@ -2,7 +2,7 @@ const path = require("path");
 const uploaded_image_details = require("./uploaded_file_details");
 const sharp = require("sharp");
 const { ErrorHandler } = require("./errors");
-const resized_image_url = require("./get_file_url");
+const build_short_url = require("./build_short_url");
 
 const processed_resize_image_req = (req) => {
   return Object.assign(
@@ -62,7 +62,12 @@ const resize_image = (req, jobDetails, outputFormat) => {
     .toFormat(outputFormat)
     .toFile(path.join(imageDirectory, newFileName), (err, info) => {});
 
-  return resized_image_url(`../public/uploads/${newFileName}`);
+  return build_new_image_url(newFileName);
+};
+
+const build_new_image_url = (newFileName) => {
+  const filePath = path.join(__dirname, `../public/uploads/${newFileName}`);
+  return build_short_url(filePath);
 };
 
 const generate_new_file_name = (fileExt) => {

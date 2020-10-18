@@ -1,4 +1,4 @@
-const uploaded_file_url = require("./get_file_url");
+const build_short_url = require("./build_short_url");
 const { ErrorHandler } = require("./errors");
 
 const uploaded_file_details = (req) => {
@@ -12,7 +12,7 @@ const uploaded_file_details = (req) => {
     originalFileName: req.file.originalname,
     mimetype: req.file.mimetype,
     size: req.file.size + " bytes",
-    originalFileUrl: uploaded_file_url(req.file.path),
+    originalFileUrl: build_short_url(req.file.path),
   };
   return file_details;
 };

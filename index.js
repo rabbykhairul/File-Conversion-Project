@@ -12,6 +12,9 @@ app.use("/api/resizeImage", resizeImage);
 const download = require("./routes/download");
 app.use("/api/download", download);
 
+const redirectShortURL = require("./routes/redirectShortURL");
+app.use("/r", redirectShortURL);
+
 app.use((err, req, res, next) => {
   handle_error(err, res);
 });

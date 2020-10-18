@@ -13,7 +13,32 @@ const build_short_url = (filePath) => {
 };
 
 const generate_short_code = () => {
-  return "Short1";
+  let shortCode = bulid_code();
+  while (true) {
+    if (short_code_already_exists(shortCode)) {
+      shortCode = bulid_code();
+    } else {
+      return shortCode;
+    }
+  }
+};
+
+const short_code_already_exists = (shortCode) => {
+  return urlMap[shortCode] != undefined;
+};
+
+const bulid_code = () => {
+  const charBox =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
+  let charBoxLength = charBox.length;
+  let code = "";
+
+  for (let i = 0; i < 6; i++) {
+    let idx = Math.floor(Math.random() * charBoxLength);
+    code += charBox[idx];
+  }
+
+  return code;
 };
 
 const map_short_url_with_original_url = (shortURL, originalURL) => {
